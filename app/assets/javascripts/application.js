@@ -25,7 +25,7 @@ var Synth = (function() {
 
   // Constructor
   var Synth = function() {
-    myCanvas = document.getElementsByClassName('synth')[0];
+    myCanvas = document.getElementsByClassName('piano-keys')[0];
     // frequencyLabel = document.getElementById('frequency');
     // volumeLabel = document.getElementById('volume');
 
@@ -46,13 +46,33 @@ var Synth = (function() {
 
     myCanvas.addEventListener('mousedown', Synth.playSound);
     myCanvas.addEventListener('touchstart', Synth.playSound);
-
-    // myCanvas.addEventListener('mousedown', alert('Test'));
-
     myCanvas.addEventListener('mouseup', Synth.stopSound);
     document.addEventListener('mouseleave', Synth.stopSound);
     myCanvas.addEventListener('touchend', Synth.stopSound);
+
+    // $('*[data-targetID="C"]');. addEventListener ('keydown', function (event) {
+    //  if (event.which == 67) {
+    //     Event.preventDefault ();
+    //     var field = event.target;
+    //     if (field.getAttribute ('data-index')) {
+    //        var next = document.getElementById (field.getAttribute ('data-index'));
+    //        next.focus ();
+    //       }
+    //    }
+    // });
+
+$(function() {
+    $(document).keydown(function(event){
+      var press = jQuery.Event('keypress');
+      if (event.which == 67) {
+        $('#natural').trigger('press');
+      }
+    });
+  });
+
   };
+
+
 
 
   // Play a note.
@@ -60,7 +80,15 @@ var Synth = (function() {
     oscillator = myAudioContext.createOscillator();
     gainNode = myAudioContext.createGain();
 
-    oscillator.type = 'triangle';
+    if (document.getElementById('osc-shape').value == "0") {
+      oscillator.type = 'sawtooth';
+    } else if (document.getElementById('osc-shape').value == "1") {
+      oscillator.type = 'sine';
+    } else if (document.getElementById('osc-shape').value == "2") {
+      oscillator.type = 'square';
+    } else if (document.getElementById('osc-shape').value == "3") {
+      oscillator.type = 'triangle';
+    }
 
     gainNode.connect(myAudioContext.destination);
     oscillator.connect(gainNode);
@@ -121,6 +149,7 @@ var Synth = (function() {
       Synth.calculateFrequency(touch.pageX, touch.pageY);
     }
   };
+
 
 
   // Export Synth.
