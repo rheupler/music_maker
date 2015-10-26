@@ -65,7 +65,7 @@ $(function() {
     $(document).keydown(function(event){
       var press = jQuery.Event('keypress');
       if (event.which == 67) {
-        $('#natural').trigger('press');
+        $('.C').trigger('click');
       }
     });
   });
@@ -124,7 +124,7 @@ $(function() {
 
   // Calculate the volume.
   Synth.calculateVolume = function(posY) {
-    var volumeLevel = 1 - (((100 / myCanvas.offsetHeight) * (posY - myCanvas.offsetTop)) / 100);
+    var volumeLevel = 1;
     return volumeLevel;
   };
 
