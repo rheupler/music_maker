@@ -155,7 +155,7 @@
    width: 1000px;
    height: 180px;
    margin-left: 60px;
-   margin-top: 275px;
+   margin-top: 180px;
  }
 
 .piano-keys .key {
@@ -184,17 +184,19 @@
    -webkit-border-radius: 0px 0px 10px 10px;
  }
 
- /*#piano-keys .key.held {
-   background-color: $color4;
-   height: 96%;
- }*/
  #natural:hover {
    background-color: lighten($color1, 5%);
    height: 99%;
  }
+
+ #natural {
+   color: black;
+ }
+
 .piano-keys #sharp:hover {
    background-color: darken($color1, 20%);
  }
+
 
  input[type=range]{
    -webkit-appearance: none;
@@ -212,4 +214,22 @@
  }
  input:focus {
      outline: none;
+ }
+
+ /**** Keys changing color with keyboard ****/
+
+ .colorChange {
+   background-color: lighten($color1, 5%);
+   height: 99%;
+ }
+.colorChangeSharp {
+   background-color: darken($color1, 20%);
+ }
+
+ #sharp {
+   color: white;
+ }
+
+ .show {
+   display: inline-block;
  }

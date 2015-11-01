@@ -9,7 +9,7 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 if (!AudioContext) {
   alert("Sorry, your browser doesn't support the Web Audio APIs.");
-  throw new Error("Sorry, your browser doesn't support the Web Audio APIs."); // ABORT ALL
+  throw new Error("Sorry, your browser doesn't support the Web Audio APIs.");
 }
 
 var frequencyByKey = {
@@ -28,7 +28,8 @@ var frequencyByKey = {
   75: 523.251, // C5
   79: 554.365, // C#5
   76: 587.330, // D5
-  80: 622.254 // D#5
+  80: 622.254, // D#5
+  186: 659.3 // E5
 };
 
 var nameByKey = {
@@ -47,7 +48,8 @@ var nameByKey = {
   75: "C5",
   79: "C#5",
   76: "D5",
-  80: "D#5"
+  80: "D#5",
+  186: "E5"
 };
 
 var show = document.getElementById("show");
@@ -61,13 +63,13 @@ gain.connect(context.destination);
 
 document.addEventListener('keydown', function (event) {
   var alreadyPressed = false;
-  for (var i = 0; i < nodes.length; i++) {
+  for (var i = 0; i < nodes.length; ++i) {
     if (nodes[i].code === event.keyCode) {
       alreadyPressed = true;
       break;
     }
   }
-  if (event.keyCode >= 65 && event.keyCode <= 90 && !alreadyPressed) {
+  if (event.keyCode >= 65 && event.keyCode <= 186 && !alreadyPressed) {
     var osc = context.createOscillator();
       if (document.getElementById('osc-shape').value == "0") {
         osc.type = 'sawtooth';
@@ -99,33 +101,31 @@ document.addEventListener('keydown', function (event) {
 
 document.addEventListener('keyup', function (event) {
   var garbage = [];
-  for (var i = 0; i < nodes.length; i++) {
+  for (var i = 0; i < nodes.length; ++i) {
     if (nodes[i].code === event.keyCode) {
       nodes[i].node.stop(0);
       nodes[i].node.disconnect();
       garbage.push(i);
     }
   }
-  for (var i = 0; i < garbage.length; i++) {
+  for (var i = 0; i < garbage.length; ++i) {
     nodes.splice(garbage[i], 1);
   }
   var str = "";
-  for (var i = 0; i < nodes.length; i++) {
+  for (var i = 0; i < nodes.length; ++i) {
     str += nameByKey[nodes[i].code] + " ";
   }
-  show.textContent = str;
+  // show.textContent = str;
 }, false);
 
+
 $(function() {
-    $(document).keydown(function(event){
-      var press = jQuery.Event('keypress');
-      if (event.which == 65) {
-        $('.C').trigger('press');
+    $(document).keydown(function(event) {
+      if (event.which === 67) {
+        $(".C").toggleClass("colorChange");
       }
     });
   });
-
-
 // var Synth = (function() {
 //   // Variables and Notes
 //   var notes = ['B','c','c#','d','d#','e','f','f#','g','g#','a','a#','b','C'];
