@@ -4,6 +4,7 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+//= require jquery.turbolinks
 
 // WEB AUDIO API CHECK
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -120,12 +121,27 @@ document.addEventListener('keyup', function (event) {
 
 
 $(function() {
-    $(document).keydown(function(event) {
-      if (event.which === 67) {
-        $(".C").toggleClass("colorChange");
-      }
-    });
+  $(document).keydown(function(e) {
+    var code = (e.keyCode ? e.keyCode : e.which)
+    if (code === 65) {
+      $("[data-note='C']").removeClass('C').addClass('colorChange');
+    }
   });
+});
+
+// $(function() {
+//     $(document).keydown(function(e) {
+//         var code = (e.keyCode ? e.keyCode : e.which)
+//         if (code === 65) {
+//             $('.C','.colorChange').toggleClass("C", "colorChange");
+//         }
+//     });
+// });
+
+
+
+
+
 // var Synth = (function() {
 //   // Variables and Notes
 //   var notes = ['B','c','c#','d','d#','e','f','f#','g','g#','a','a#','b','C'];

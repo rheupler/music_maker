@@ -25,6 +25,10 @@
  $color4: #4A8886;
  $color5: #333;
 
+button {
+  background-color: $color3;
+  color: black;
+}
 
 
  $font1: 'Roboto', sans-serif;
@@ -68,7 +72,7 @@
  }
 
  .synth {
-   width: 1010px;
+   width: 875px;
    height:450px;
    padding: 0px;
    margin: 0px;
@@ -169,7 +173,12 @@
    -webkit-transition: background-color ease-out .25s;
    border-radius: 0px 0px 2px 2px;
    -moz-border-radius: 0px 0px 0px 2px;
- -webkit-border-radius: 0px 0px 10px 10px;
+   -webkit-border-radius: 0px 0px 10px 10px;
+ }
+
+ .key-text {
+   padding: 50%;
+   display: center;
  }
 
 .piano-keys #sharp {
