@@ -82,6 +82,10 @@ document.addEventListener('keydown', function (event) {
         osc.type = 'triangle';
       }
 
+      if (document.getElementById('env-decay').val == "0") {
+        var synthDelay = audioCtx.createDelay(5.0);
+      }
+
     osc.frequency.value = frequencyByKey[event.keyCode];
     osc.connect(gain);
     try {
