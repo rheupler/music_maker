@@ -34,7 +34,7 @@ var frequencyByKey = {
 };
 
 var nameByKey = {
-  65: "C4",
+  65: "C",
   87: "C#4",
   83: "D4",
   69: "D#4",
@@ -123,11 +123,20 @@ document.addEventListener('keyup', function (event) {
 $(function() {
   $(document).keydown(function(e) {
     var code = (e.keyCode ? e.keyCode : e.which)
-    if (code === 65) {
-      $("[data-note='C']").removeClass('C').addClass('colorChange');
-    }
+    var element = "." + nameByKey[code];
+    $(element).addClass("color-change");
   });
 });
+
+$(function() {
+  $(document).keyup(function(e) {
+    var code = (e.keyCode ? e.keyCode : e.which)
+    var removeElement = "#" + nameByKey[code];
+    $(removeElement).removeClass("color-change");
+  });
+});
+
+
 
 // $(function() {
 //     $(document).keydown(function(e) {

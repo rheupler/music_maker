@@ -181,7 +181,7 @@ button {
    display: center;
  }
 
-.piano-keys #sharp {
+.piano-keys .sharp {
    background-color: darken($color1, 30%);
    height: 66.6%;
    width: 66.6%;
@@ -193,16 +193,16 @@ button {
    -webkit-border-radius: 0px 0px 10px 10px;
  }
 
- #natural:hover {
+ .natural:hover {
    background-color: lighten($color1, 5%);
    height: 99%;
  }
 
- #natural {
+ .natural {
    color: black;
  }
 
-.piano-keys #sharp:hover {
+.piano-keys .sharp:hover {
    background-color: darken($color1, 20%);
  }
 
@@ -227,8 +227,8 @@ button {
 
  /**** Keys changing color with keyboard ****/
 
- .colorChange {
-   background-color: lighten($color1, 5%);
+ .color-change {
+   background-color: $color1 !important;
    height: 99%;
  }
 .colorChangeSharp {
